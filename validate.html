@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" onsubmit="validate()">
+        <input type="text" name="firstname" id="name">
+        <input type="text" name="pincode" id="pincode">
+        <input type="submit">
+    </form>
+    <script>
+        function validate(){
+            var name= document.getElementById("name").value;
+            var regex=/^[a-z A-Z]{2,10}$/;
+            var pincode=document.getElementById("pincode").value;
+            var regex1=/^[0-9]{6}$/;
+            var firstname=regex.test(name);
+            var pincode=regex1.test(pincode);
+
+            if (firstname == false){
+                alert("please enter valid name");
+                return false;
+            }
+            
+            if(pincode == false){
+                alert("please enter valid number");
+                return false;
+            }
+             
+             alert("form submitted successfully")
+        }
+    </script>
+</body>
+</html>

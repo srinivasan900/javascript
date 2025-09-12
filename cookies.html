@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Handling in JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>   
+</head>
+<body>
+    <h2>Set and Get Cookies</h2> 
+    <label for="username">Enter your name:</label>
+     <input type="text" id="username" />
+      <button onclick="saveUsername()">Save</button>
+       <button onclick="showUsername()">Show</button> 
+       <p id="output"></p>
+    <script>
+        //Set Cookie Function
+function setCookie(name, value, days) {
+     let expires = "";
+      if (days) { 
+        const date = new Date(); 
+        date.setTime(date.getTime() + (days*24*60*60*1000)); 
+        expires = "; expires=" + date.toUTCString(); } 
+        document.cookie = name + "=" + value + expires + "; path=/";
+     }
+     //Get Cookie function
+         function getCookie(name) {
+             let nameEQ = name + "="; 
+             let ca = document.cookie.split(';'); 
+             for(let i=0;i < ca.length;i++) 
+             { 
+                let c = ca[i]; 
+                while (c.charAt(0)==' ') 
+             c = c.substring(1); 
+             if (c.indexOf(nameEQ) == 0) 
+             return c.substring(nameEQ.length); 
+            } 
+             return null; 
+            }
+            //Save username to Cookie
+            function savedUsername(){
+                const user=document.getElementById("username").value;
+                    if(user){
+                        setCookie("usernamee",user,7);//save for 7 days
+                        alert("Username saved as cookie");
+                    }
+            }
+            //show Username from Cookie 
+            function show Username(){
+                const user=getCookie("username");
+                document.getElementById("output").innerText=user
+                ?"hello,"+user
+                :"No Cookie found";
+            }
+            </script>
+            </body>
+            </html>

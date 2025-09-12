@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM,nodes</title>       
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .highlight{
+           background-color: rgb(43, 226, 73); 
+           width: 200px;
+        }
+        #mylist{
+            color: brown;
+            font-weight:bold;
+            font-size: xx-large;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            list-style-type:circle ;
+            list-style-type:square;
+        }
+        
+    </style>
+</head> 
+<body>
+    <div class="container-fluid">
+<h1 class="text-center">DOM,nodes</h1>
+<ul id="mylist">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>BOOTSTRAP</li>
+    <li>JAVASCRIPT</li>
+</ul>
+<p id="delete"><span style="color: rgb(34, 1, 1);">this will be deleted</span></p>
+<button onclick="deleteitem()"class="btn btn-danger">delete item</button>
+<p id="para">this is an old paragraph</p>
+<button onclick="addItem()"class="btn btn-success">add item</button>
+<button onclick="highlightfirst()"class="btn btn-success">highlight first item</button>
+<button onclick="highlightLast()"class="btn btn-success">highlight last item</button>
+<button onclick="removeFirst()"class="btn btn-success">remove first item</button>
+<button onclick="removelast()"class="btn btn-success">remove last item</button>
+<div class="output" id="output"></div><br><br>
+</div>
+<script>
+
+    //dom access
+    let oldpara = document.getElementById("para");
+    let newpara = document.createElement("p");
+    newpara.textContent="this is new paragraph";
+    //replacing
+    oldpara.parentNode.replaceChild(newpara,oldpara);
+
+ const list=document.getElementById("mylist");
+ const output=document.getElementById("output");
+ function deleteitem(){
+    document.getElementById("delete").remove();
+ }
+ //id access
+ function addItem(){
+    const newItem=document.createElement("li");
+    newItem.textContent="new item "+(list.children.length + 1);
+    list.appendChild(newItem);
+    output.textContent="item added";
+ }
+//first item
+function removeFirst(){
+    if(list.firstElementChild){
+        list.removeChild(list.firstElementChild);
+    }
+    output.textContent = "item removed";
+}
+//remove last item
+function removelast(){
+    if(list.firstElementChild){
+        list.removeChild(list.lastElementChild);
+    }
+    output.textContent = "item removed";
+}
+//last item
+function highlightLast(){
+    const lastitem = list.lastElementChild;
+    if(lastitem){
+        lastitem.classList.add("highlight");
+    }
+    output.textContent = "last item highlighted";
+}
+//first highlight
+function highlightfirst(){
+    const firstitem = list.firstElementChild;
+    if(firstitem){
+        firstitem.classList.add("highlight");
+    }
+    output.textContent = " first item highlighted";
+}
+</script>
+</body>
+</html>
